@@ -1,0 +1,84 @@
+ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.io.Serializable;
+
+/**
+ * Write a description of class Block here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Block extends Actor implements Serializable
+{
+    boolean hasCollision = true;
+    boolean hitWall = false;
+    boolean hasBox = false;
+    CollisionBox collisionBox;
+    int finalX;
+    int finalY;
+    boolean playerOnRight = false;
+    boolean playerOnLeft = false;
+    /**
+     * Act - do whatever the Enemy wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (((MyWorld)getWorld()).paused == false) {
+            MyWorld myWorld = (MyWorld)MyWorld.world;
+            Block block = new Block();
+            
+            if (hasBox == false){
+                collisionBox = (CollisionBox) getOneObjectAtOffset(5, 5, CollisionBox.class);
+                collisionBox.setBoxSize(block);
+                collisionBox.setDraggable(true);
+                hasBox = true;
+            }
+            int x = 0;
+            int y = 0;
+            
+            
+            if (x > -1 && y > -1){
+                finalX = getX();
+                finalY = getY();
+            }
+            
+            
+            x = collisionBox.getX();
+            y = collisionBox.getY();
+            
+            Object[] objects = getObjectsInRange(getImage().getHeight() + (getImage().getHeight()/2), Player.class).toArray();
+            if (objects.length > 0){
+                Player player = (Player) objects[0];
+                if ((x == (player.getX() - ((player.getImage().getWidth())/2 + getImage().getWidth()/2))) && collisionBox.getBarrierOnLeft() == false && Greenfoot.isKeyDown("A")){
+                    collisionBox.inMotion = true;
+                    playerOnRight = true;
+                    System.out.println("This Works");
+                } else {
+                    playerOnRight = false;
+                    collisionBox.setLeftVelocity(0);
+                }
+                //player.getCollisionBox().rightVelocity
+                if ((x == (player.getX() + ((player.getImage().getWidth())/2 + getImage().getWidth()/2))) && collisionBox.getBarrierOnRight() == false && Greenfoot.isKeyDown("D")){
+                    collisionBox.inMotion = true;
+                    playerOnLeft = true;
+                    System.out.println("This Works");
+                } else {
+                    playerOnLeft = false;
+                    collisionBox.setRightVelocity(0);
+                }
+            }
+            
+            if (playerOnRight == false && playerOnLeft == false && Greenfoot.mouseClicked(this) == false){
+                setLocation(x, y);
+            } else if(playerOnRight == true && collisionBox.barrierOnLeft == false && Greenfoot.mouseClicked(this) == false){
+                setLocation(x - 2, y);
+                collisionBox.setLocation(x - 2, y); 
+                myWorld.hero.collisionBox.setLocation(myWorld.hero.getX() - 2, myWorld.hero.getY());
+            } else if(playerOnLeft == true && collisionBox.barrierOnRight == false && Greenfoot.mouseClicked(this) == false){
+                setLocation(x + 2, y);
+                collisionBox.setLocation(x + 2, y); 
+                myWorld.hero.collisionBox.setLocation(myWorld.hero.getX() + 2, myWorld.hero.getY());
+            }
+        }
+    }
+}

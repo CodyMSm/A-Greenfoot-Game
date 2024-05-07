@@ -1,0 +1,76 @@
+
+
+if (getY() == (object.getY() - ((object.getImage().getHeight())/2 + getImage().getHeight()/2))){
+                        if (canPush == false){
+                            edgeY = boxY + ((object.getImage().getHeight())/2 + getImage().getHeight()/2);
+                            upVelocity = 0;
+                        } else if (canPush == true){
+                            upVelocity = ((mass * upVelocity) + (box.getMass() * box.getUpVelocity()))/(mass + box.getMass());
+                            box.setUpVelocity(((mass * upVelocity) + (box.getMass() * box.getUpVelocity()))/(mass + box.getMass()));
+                        }
+                    }
+                    if (getY() == (object.getY() + ((object.getImage().getHeight())/2 + getImage().getHeight()/2))){
+                        edgeY = boxY - ((object.getImage().getHeight())/2 + getImage().getHeight()/2);
+                        downVelocity = 0;
+                    } 
+                    if (getX() == (object.getX() - ((object.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        if (canPush == false){
+                            //edgeX = boxX + ((object.getImage().getWidth())/2 + getImage().getWidth()/2);
+                            //leftVelocity = 0;
+                        } else if (canPush == true){
+                            box.setLeftVelocity(((mass * leftVelocity) + (box.getMass() * box.getLeftVelocity()))/(mass + box.getMass()));
+                            leftVelocity = ((mass * leftVelocity) + (box.getMass() * box.getLeftVelocity()))/(mass + box.getMass());
+                        }
+                    } 
+                    if (getX() == (object.getX() + ((object.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        if (canPush == false){
+                            //edgeX = boxX - ((object.getImage().getWidth())/2 + getImage().getWidth()/2);
+                            //rightVelocity = 0;
+                        } else if (canPush == true){
+                            box.setRightVelocity(((mass * rightVelocity) + (box.getMass() * box.getRightVelocity()))/(mass + box.getMass()));
+                            System.out.println(box.rightVelocity);
+                            rightVelocity = ((mass * rightVelocity) + (box.getMass() * box.getRightVelocity()))/(mass + box.getMass());
+                        }
+                    }
+
+
+
+if ((getX() == (boxX + ((object.getImage().getWidth())/2 + getImage().getWidth()/2))) || 
+                        (x <= boxX && (Math.abs(object.getY() - y) < Math.abs(object.getX() - x)))){
+                        if (canPush == false){
+                            //edgeX = boxX - ((object.getImage().getWidth())/2 + getImage().getWidth()/2);
+                            //rightVelocity = 0;
+                        } else if (canPush == true){
+                            box.setRightVelocity(((mass * rightVelocity) + (box.getMass() * box.getRightVelocity()))/(mass + box.getMass()));
+                            
+                            setLocation(0,0);
+                            System.out.println(box.rightVelocity);
+                            
+                            rightVelocity = ((mass * rightVelocity) + (box.getMass() * box.getRightVelocity()))/(mass + box.getMass());
+                        }
+                    }
+                    if ((getX() == (boxX - ((object.getImage().getWidth())/2 + getImage().getWidth()/2))) || 
+                        (x >= boxX && (Math.abs(object.getY() - y) < Math.abs(object.getX() - x)))){
+                        if (canPush == false){
+                            //edgeX = boxX + ((object.getImage().getWidth())/2 + getImage().getWidth()/2);
+                            //leftVelocity = 0;
+                        } else if (canPush == true){
+                            box.setLeftVelocity(((mass * leftVelocity) + (box.getMass() * box.getLeftVelocity()))/(mass + box.getMass()));
+                            leftVelocity = ((mass * leftVelocity) + (box.getMass() * box.getLeftVelocity()))/(mass + box.getMass());
+                        }
+                    }
+                    if ((getY() == (boxY + ((object.getImage().getHeight())/2 + getImage().getHeight()/2))) ||
+                        (y <= boxY && (Math.abs(object.getY() - y) > Math.abs(object.getX() - x)))){
+                        edgeY = boxY - ((object.getImage().getHeight())/2 + getImage().getHeight()/2);
+                        downVelocity = 0;
+                    }
+                    if ((getY() == (boxY - ((object.getImage().getHeight())/2 + getImage().getHeight()/2))) || 
+                        (y >= boxY && (Math.abs(object.getY() - y) > Math.abs(object.getX() - x)))){
+                        if (canPush == false){
+                            edgeY = boxY + ((object.getImage().getHeight())/2 + getImage().getHeight()/2);
+                            upVelocity = 0;
+                        } else if (canPush == true){
+                            upVelocity = ((mass * upVelocity) + (box.getMass() * box.getUpVelocity()))/(mass + box.getMass());
+                            box.setUpVelocity(((mass * upVelocity) + (box.getMass() * box.getUpVelocity()))/(mass + box.getMass()));
+                        }
+                    }

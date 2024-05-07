@@ -1,0 +1,65 @@
+// Allows this actor to be moved by the mouse
+            MouseInfo mouse = Greenfoot.getMouseInfo();
+            Object[] platformObstacles = getObjectsInRange(0, Platform.class).toArray();
+            if(mouse != null) { // May be null if the mouse is outside of the world bounds
+                mouseX = mouse.getX();
+                mouseY = mouse.getY();
+            }
+            if(Greenfoot.mousePressed(this)) {
+                mouseDown = true;
+            }
+            else if(Greenfoot.mouseClicked(null)) {
+                mouseDown = false;
+            }
+            if ((Greenfoot.mouseDragged(this) == true || Greenfoot.mousePressed(this) == true || mouseDown == true) && draggable == true){
+                if (mouseY > y && mouseYDistance < mouseY){
+                    mouseYDistance = downVelocity + (mouseY - y);
+                } else if (y > mouseY && mouseYDistance < y){
+                    mouseYDistance = upVelocity + (y - mouseY);
+                } else {
+                    mouseYDistance = 100;
+                }
+                if (mouseX > x && mouseXDistance < mouseX){
+                    mouseXDistance = rightVelocity + (mouseX - x);
+                } else if (x > mouseX && mouseXDistance < x){
+                    mouseXDistance = leftVelocity + (x - mouseX);
+                } else {
+                    mouseXDistance = 100;
+                }
+                if (Math.abs(mouseYDistance) > 0 || Math.abs(mouseXDistance) > 0){
+                    if (Math.abs(mouseXDistance) >= Math.abs(mouseYDistance)){
+                        platformObstacles = getObjectsInRange(Math.abs(mouseXDistance), Platform.class).toArray();
+                    } else if (Math.abs(mouseXDistance) <= Math.abs(mouseYDistance)){
+                        platformObstacles = getObjectsInRange(Math.abs(mouseYDistance), Platform.class).toArray();
+                    }
+                    for (int i = 0; i < platformObstacles.length; i++){
+                        Actor object = (Actor) platformObstacles[i];
+                        if (((mouseX > (object.getX() - object.getImage().getWidth()/2) && mouseX > x) || (mouseX < (object.getX() + object.getImage().getWidth()/2) && mouseX < x)) && 
+                            ((mouseY > (object.getY() - object.getImage().getHeight()/2) && mouseY > y) || (mouseY < (object.getY() + object.getImage().getHeight()/2) && mouseY < y)) || 
+                            barrierOnLeft == true || barrierOnRight == true || onGround == true || onCeiling == true){
+                            setLocation(x, y);
+                            noObstacles = false;
+                        } else if (((mouseX > (object.getX() - object.getImage().getWidth()/2) && mouseX > x) || (mouseX < (object.getX() + object.getImage().getWidth()/2) && mouseX < x)) || 
+                            ((mouseY > (object.getY() - object.getImage().getHeight()/2) && mouseY > y) || (mouseY < (object.getY() + object.getImage().getHeight()/2) && mouseY < y)) || 
+                            barrierOnLeft == true || barrierOnRight == true || onGround == true || onCeiling == true){
+                            if (((mouseX > (object.getX() - object.getImage().getWidth()/2) && mouseX > x) || (mouseX < (object.getX() + object.getImage().getWidth()/2) && mouseX < x)) || (barrierOnLeft == true || barrierOnRight == true)){
+                                setLocation(mouseX, y);
+                                noObstacles = false;
+                            }
+                            if (((mouseY > (object.getY() - object.getImage().getHeight()/2) && mouseY > y) || (mouseY < (object.getY() + object.getImage().getHeight()/2) && mouseY < y)) || (onGround == true || onCeiling == true)){
+                                setLocation(mouseX, y);
+                                noObstacles = false;
+                            }
+                        }
+                    }
+                    
+                    if (noObstacles == true){
+                        setLocation(mouseX, mouseY);
+                        mouseXDistance = 100;
+                        mouseYDistance = 100;
+                    }
+                } else {
+                    noObstacles = false;
+                    mouseXDistance = 100;
+                    mouseYDistance = 100;
+                }

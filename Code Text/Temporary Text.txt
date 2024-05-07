@@ -1,0 +1,137 @@
+Object[] objectArray2 = getObjectsInRange(platformImageHeight, Platform.class).toArray();
+Object[] objectArray4 = getObjectsInRange(getImage().getHeight() + (getImage().getHeight()/2), CollisionBox.class).toArray();
+            if (objectArray2.length > 0 || objectArray4.length > 0){
+                int count1 = 0;
+                int count2 = 0;
+                int count3 = 0;
+                for (int i = 0; i < objectArray4.length; i++){
+                    Actor boxObject = (Actor) objectArray4[i];
+                    
+                    // System.out.println("Object in question: " + object);
+                    if (y == (boxObject.getY() - ((boxObject.getImage().getHeight())/2 + getImage().getHeight()/2))){
+                        if (gravitationalVelocity == 0){
+                            onGround = true;
+                            count1++;
+                            System.out.println("THIS WORKS");
+                        }
+                    }
+                    if (count1 == 0){
+                        onGround = false;
+                    }
+                    
+                    if (x == (boxObject.getX() - ((boxObject.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        barrierOnRight = true;
+                        count2++;
+                    }
+                    if (count2 == 0){
+                        barrierOnRight = false;
+                    }
+                    
+                    if (x == (boxObject.getX() + ((boxObject.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        barrierOnLeft = true;
+                        count3++;
+                    }
+                    if (count3 == 0){
+                        barrierOnLeft = false;
+                    }
+                    // System.out.println("On Ground? " + onGround);
+                }
+                count1 = 0;
+                count2 = 0;
+                count3 = 0;
+                for (int i = 0; i < objectArray2.length; i++){
+                    Actor object = (Actor) objectArray2[i];
+                    // System.out.println("Object in question: " + object);
+                    platformX = object.getX();
+                    platformY = object.getY();
+                    if ((y == (platformY - ((object.getImage().getHeight())/2 + getImage().getHeight()/2)))){
+                        if (gravitationalVelocity == 0){
+                            onGround = true;
+                            count1++;
+                        }
+                    }
+                    if (count1 == 0){
+                        onGround = false;
+                    }
+                    
+                    if (x == (platformX - ((object.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        barrierOnRight = true;
+                        count2++;
+                    }
+                    if (count2 == 0){
+                        barrierOnRight = false;
+                    }
+                    
+                    if (x == (platformX + ((object.getImage().getWidth())/2 + getImage().getWidth()/2))){
+                        barrierOnLeft = true;
+                        count3++;
+                    }
+                    if (count3 == 0){
+                        barrierOnLeft = false;
+                    }
+                    // System.out.println("On Ground? " + onGround);
+                }
+            } else {
+                onGround = false;
+                barrierOnRight = false;
+                barrierOnLeft = false;
+            }
+
+
+
+Object[] objectArray2 = getObjectsInRange(platformImageHeight, Platform.class).toArray();
+            Object[] objectArray4 = getObjectsInRange(getImage().getHeight() + (getImage().getHeight()/2), CollisionBox.class).toArray();
+            if (objectArray2.length > 0 || objectArray4.length > 0){
+                int count1 = 0;
+                int count2 = 0;
+                int count3 = 0;
+                for (int i = 0; i < objectArray4.length; i++){
+                    Actor boxObject = (Actor) objectArray4[i];
+                    
+                    Actor object = null;
+                    
+                    platformX = 0;
+                    platformY = 0;
+                    if (objectArray2.length > 0){
+                        object = (Actor) objectArray2[i];
+                        platformX = object.getX();
+                        platformY = object.getY();
+                    }
+                    
+                    // System.out.println("Object in question: " + object);
+                    if ((y == (boxObject.getY() - ((boxObject.getImage().getHeight())/2 + getImage().getHeight()/2))) || 
+                        (y == (platformY - ((object.getImage().getHeight())/2 + getImage().getHeight()/2)))){
+                        if (gravitationalVelocity == 0){
+                            onGround = true;
+                            count1++;
+                            System.out.println("THIS WORKS");
+                        }
+                    }
+                    if (count1 == 0){
+                        onGround = false;
+                    }
+                    
+                    if ((x == (boxObject.getX() - ((boxObject.getImage().getWidth())/2 + getImage().getWidth()/2))) || 
+                        (x == (platformX - ((object.getImage().getWidth())/2 + getImage().getWidth()/2)))){
+                        barrierOnRight = true;
+                        count2++;
+                    }
+                    if (count2 == 0){
+                        barrierOnRight = false;
+                    }
+                    
+                    if ((x == (boxObject.getX() + ((boxObject.getImage().getWidth())/2 + getImage().getWidth()/2))) || 
+                        (x == (platformX + ((object.getImage().getWidth())/2 + getImage().getWidth()/2)))){
+                        barrierOnLeft = true;
+                        count3++;
+                    }
+                    if (count3 == 0){
+                        barrierOnLeft = false;
+                    }
+                    // System.out.println("On Ground? " + onGround);
+                }
+            } else {
+                onGround = false;
+                barrierOnRight = false;
+                barrierOnLeft = false;
+            }
