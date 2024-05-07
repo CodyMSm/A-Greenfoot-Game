@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Image
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Image\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=text
+comment1.target=void\ drawText(java.lang.String)
+comment2.params=numb
+comment2.target=void\ drawFileMenu(int)
+comment3.params=
+comment3.target=void\ drawLevelDescription()
+comment4.params=
+comment4.target=void\ drawSummary()
+comment5.params=time
+comment5.target=java.lang.String\ calculateTime(int)
+numComments=6

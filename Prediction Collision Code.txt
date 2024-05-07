@@ -1,0 +1,40 @@
+// detects if the player will collide with a platform (so far this doesn't have much use)
+            if (upVelocity > 0 || downVelocity > 0 || leftVelocity > 0 || rightVelocity > 0 || gravitationalVelocity > 0){
+                if (upVelocity > gravitationalVelocity || downVelocity > gravitationalVelocity || leftVelocity > gravitationalVelocity || rightVelocity > gravitationalVelocity){
+                    distancePrediction = speed;
+                } else {
+                    distancePrediction = gravitationalVelocity;
+                }
+            } else {
+                distancePrediction = 0;
+            }
+            Object[] objectArray3 = getObjectsInRange(platformImageHeight + distancePrediction, Platform.class).toArray();
+            if ((objectArray3.length > 0) && (upVelocity > 0 || downVelocity > 0 || leftVelocity > 0 || rightVelocity > 0 || gravitationalVelocity > 0)){
+                for (int i = 0; i < objectArray3.length; i++){
+                    Actor object = (Actor) objectArray3[i];
+                    // System.out.println("Object in question: " + object);
+                    platformX = object.getX();
+                    platformY = object.getY();
+                    
+                    if (((platformY - ((object.getImage().getHeight())/2) - (y + (getImage().getHeight()/2))) < gravitationalVelocity) && ((platformY - ((object.getImage().getHeight())/2) - (y + (getImage().getHeight()/2))) > 0) && gravitationalVelocity > 0){
+                        gravitationalVelocity = (platformY - ((object.getImage().getHeight())/2) - (y + (getImage().getHeight()/2)));
+                        //System.out.println("gravity velocity:" + velocity);
+                    }
+                    
+                    if (((y - (getImage().getHeight()/2)) - (platformY + ((object.getImage().getHeight())/2)) < upVelocity) && ((y - (getImage().getHeight()/2)) - (platformY + ((object.getImage().getHeight())/2)) > 0) && upVelocity > 0){
+                        upVelocity = (y - (getImage().getHeight()/2)) - (platformY + ((object.getImage().getHeight())/2));
+                        //System.out.println("up velocity:" + upVelocity);
+                    }
+                    
+                    if (((platformX - ((object.getImage().getWidth())/2) - (x + (getImage().getWidth()/2))) < rightVelocity) && (platformX - ((object.getImage().getWidth())/2) - (x + (getImage().getWidth()/2)) > 0) && rightVelocity > 0){
+                        rightVelocity = (platformX - ((object.getImage().getWidth())/2) - (x + (getImage().getWidth()/2)));
+                        //System.out.println("right velocity:" + rightVelocity);
+                    }
+                    
+                    if (((x - (getImage().getWidth()/2)) - (platformX + ((object.getImage().getWidth())/2)) < leftVelocity) && ((x - (getImage().getWidth()/2)) - (platformX + ((object.getImage().getWidth())/2)) > 0) && leftVelocity > 0){
+                        leftVelocity = (x - (getImage().getWidth()/2)) - (platformX + ((object.getImage().getWidth())/2));
+                        //System.out.println("left velocity:" + leftVelocity);
+                    }
+                    //System.out.println("THIS WORKS");
+                }
+            }

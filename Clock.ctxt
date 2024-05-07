@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Clock
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ clock\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=delayNumber
+comment1.target=void\ setDelay(int)
+comment2.params=paused
+comment2.target=void\ setTimePaused(boolean)
+comment3.params=timePassed
+comment3.target=void\ setTimePassed(boolean)
+comment4.params=
+comment4.target=void\ resetTime()
+comment5.params=
+comment5.target=int\ getTime()
+comment6.params=
+comment6.target=void\ act()
+comment6.text=\r\n\ Act\ -\ do\ whatever\ the\ clock\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+numComments=7

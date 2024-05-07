@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ This\ is\ the\ player,\ which\ you\ are\ supposed\ to\ control\ \r\n\ \r\n\ Cody\ S\r\n\ 10/29/2023\r\n
+comment1.params=
+comment1.target=CollisionBox\ getCollisionBox()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\r\n\ Act\ -\ do\ whatever\ the\ Player\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+numComments=3
