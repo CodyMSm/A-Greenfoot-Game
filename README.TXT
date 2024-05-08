@@ -1,7 +1,8 @@
 ------------------------------------------------------------------------
 This is the first game I ever made. It was constantly added upon as I
-learned and grew as a programmer. I learned a lot from creating this
-game, and though the code is messy, I'm rather proud of the result.
+learned and grew as a programmer during my senior year of high school. 
+I learned a lot from creating this game, and though the code is messy, 
+I'm rather proud of the result.
 ------------------------------------------------------------------------
 
 PROJECT TITLE: A game of sorts
